@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+dids_env/
+venv/
+.venv/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode/
+.idea/
+
+# Runtime output
+runs/
+evidence/
+Evidence/
+
+# Training output
+dataset_raw/runs/
+dataset_raw/drone_dataset2/runs/
+
+# Dataset images and labels
+dataset_raw/drone_dataset2/train/
+dataset_raw/drone_dataset2/valid/
+
+# Dataset/runtime files
+dataset_raw/drone_dataset2/alerts/
+dataset_raw/drone_dataset2/final_dids_system.py
+
+# Local configuration / temporary files
+*.cache
+*.cached
+*.log
