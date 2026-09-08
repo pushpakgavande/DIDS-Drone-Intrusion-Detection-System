@@ -290,11 +290,6 @@ Including the complete dataset and training outputs would make the repository un
 - Keep Twilio credentials in environment variables or a secure secret-management system.
 - Keep runtime evidence and local configuration files outside version control.
 
-## Author
-
-**Pushpak Gavande**  
-**Ayan Sawant**
-Parul Institute of Technology, Parul University
 
 ## Repository
 
