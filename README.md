@@ -1,450 +1,304 @@
-\# Drone Intrusion Detection System (DIDS)
+# Drone Intrusion Detection System (DIDS)
 
+> **AI-powered real-time drone detection, monitoring, and intrusion alert system.**
 
+## Overview
 
-\## Overview
+The **Drone Intrusion Detection System (DIDS)** is an AI-based computer vision application developed to detect drones in real time using a camera feed. It uses a trained **YOLOv8s object detection model** to identify drones and provides a monitoring dashboard with detection information, audible alerts, evidence capture, and optional SMS notification support.
 
+## Key Features
 
+- Real-time drone detection using YOLOv8s
+- Live camera monitoring
+- Bounding boxes around detected drones
+- Detection confidence display
+- Current-frame drone count
+- Audible siren alert when a drone is detected
+- Evidence image capture
+- Optional SMS alerts using Twilio
+- Professional fullscreen monitoring dashboard
+- Automatic camera detection
+- Configurable confidence threshold
+- Secure environment-variable based SMS configuration
 
-The \*\*Drone Intrusion Detection System (DIDS)\*\* is an AI-based computer vision system designed to detect unauthorized drones in real time using a camera feed. The system uses a trained \*\*YOLOv8s object detection model\*\* to identify drones, display bounding boxes and confidence scores, and provide visual and audible intrusion alerts.
-
-
-
-The project combines real-time object detection with a professional monitoring dashboard and optional SMS notification support.
-
-
-
-\## Key Features
-
-
-
-\- Real-time drone detection using YOLOv8s
-
-\- Live camera monitoring
-
-\- Bounding boxes around detected drones
-
-\- Detection confidence display
-
-\- Current-frame drone count
-
-\- Audible siren alert on detection
-
-\- Evidence image capture
-
-\- Optional SMS alerts using Twilio
-
-\- Professional fullscreen monitoring dashboard
-
-\- Automatic camera detection
-
-\- Configurable detection confidence threshold
-
-\- Secure environment-variable based configuration for SMS credentials
-
-
-
-\## System Workflow
-
-
+## System Workflow
 
 ```text
-
 Camera Feed
-
-&#x20;    ↓
-
+    |
+    v
 Frame Capture
-
-&#x20;    ↓
-
+    |
+    v
 YOLOv8s Detection Model
-
-&#x20;    ↓
-
+    |
+    v
 Drone Detection
-
-&#x20;    ↓
-
+    |
+    v
 Bounding Box + Confidence + Drone Count
-
-&#x20;    ↓
-
+    |
+    v
 Intrusion Alert
+    |
+    +-------------------+
+    |                   |
+    v                   v
+Siren Alert       Evidence Capture
+                        |
+                        v
+                Optional SMS Alert
+```
 
-&#x20;    ↓
+## Technology Stack
 
-Siren + Evidence Capture
+| Technology | Purpose |
+|---|---|
+| Python | Application development |
+| OpenCV | Camera capture and computer vision |
+| Ultralytics YOLOv8 | Drone object detection |
+| PyTorch | Deep learning framework |
+| Tkinter | Graphical user interface |
+| Pillow | Image processing and display |
+| Twilio | Optional SMS notification |
+| Git & GitHub | Version control and project hosting |
 
-&#x20;    ↓
+## Model Performance
 
-Optional SMS Notification
+The final YOLOv8s model was trained for **100 epochs** and evaluated on the cleaned validation dataset.
 
+| Metric | Performance |
+|---|---:|
+| Precision | **92.3%** |
+| Recall | **94.3%** |
+| mAP@50 | **96.8%** |
+| mAP@50-95 | **64.1%** |
 
+The final validation evaluation used **3,223 images** containing **3,014 annotated drone instances**.
 
+## Model Configuration
 
+| Parameter | Value |
+|---|---|
+| Model | YOLOv8s |
+| Training epochs | 100 |
+| Confidence threshold | 0.50 |
+| Number of classes | 1 |
+| Detection class | `drone` |
 
-Technology Stack
+## Project Structure
 
-Programming Language: Python
-
-Computer Vision: OpenCV
-
-Object Detection: Ultralytics YOLOv8
-
-Deep Learning: PyTorch
-
-GUI: Tkinter
-
-Image Processing: Pillow
-
-SMS Notification: Twilio
-
-Audio Alert: WAV audio
-
-Version Control: Git and GitHub
-
-Model Performance
-
-
-
-The final YOLOv8s model was trained for 100 epochs and evaluated on the cleaned validation dataset.
-
-
-
-Metric	Result
-
-Precision	92.3%
-
-Recall	94.3%
-
-mAP@50	96.8%
-
-mAP@50–95	64.1%
-
-
-
-Validation was performed on 3,223 images containing 3,014 annotated drone instances.
-
-
-
-Model Configuration
-
-Model: YOLOv8s
-
-Training: 100 epochs
-
-Confidence threshold in GUI: 0.50
-
-Number of classes: 1
-
-Class: drone
-
-Project Structure
-
+```text
 DIDS/
+|
++-- best.pt                         # Final trained YOLOv8s model
++-- gui_dids.py                     # Main DIDS monitoring application
++-- logo.png                        # Application logo
++-- siren.wav                       # Intrusion alert sound
++-- README.md                       # Project documentation
++-- .gitignore                      # Git exclusion rules
+|
++-- test_images/
+|   +-- test.jpg                    # Sample test image
+|   +-- test2.jpg                   # Sample test image
+|
++-- dataset_raw/
+    +-- drone_dataset2/
+        +-- data.yaml               # Dataset configuration
+        +-- yolo11n.pt              # Reference pretrained model
+        +-- yolov8n.pt              # Reference pretrained model
+        +-- yolov8s.pt              # Reference pretrained model
+```
 
-│
+> Training images, labels, runtime evidence, virtual environments, and training outputs are intentionally excluded from version control.
 
-├── best.pt
+## Requirements
 
-├── gui\_dids.py
+- Python 3.9 or newer
+- PyTorch
+- Ultralytics
+- OpenCV
+- Pillow
+- NumPy
+- Tkinter
+- Twilio (only when SMS notification is required)
 
-├── logo.png
+Install the required Python packages with:
 
-├── siren.wav
-
-├── README.md
-
-├── .gitignore
-
-│
-
-├── test\_images/
-
-│   ├── test.jpg
-
-│   └── test2.jpg
-
-│
-
-└── dataset\_raw/
-
-&#x20;   └── drone\_dataset2/
-
-&#x20;       ├── data.yaml
-
-&#x20;       ├── yolo11n.pt
-
-&#x20;       ├── yolov8n.pt
-
-&#x20;       └── yolov8s.pt
-
-
-
-Training images, labels, runtime evidence, virtual environments, and training outputs are intentionally excluded from version control.
-
-
-
-Requirements
-
-
-
-Recommended:
-
-
-
-Python 3.9+
-
-PyTorch
-
-Ultralytics
-
-OpenCV
-
-Pillow
-
-NumPy
-
-Tkinter
-
-Twilio (only if SMS notification is required)
-
-
-
-Install dependencies:
-
-
-
+```powershell
 pip install ultralytics opencv-python pillow numpy twilio
+```
 
-Installation
+## Installation
 
-1\. Clone the repository
+### 1. Clone the repository
 
+```powershell
 git clone https://github.com/pushpakgavande/DIDS-Drone-Intrusion-Detection-System.git
-
 cd DIDS-Drone-Intrusion-Detection-System
+```
 
-2\. Create and activate a virtual environment
+### 2. Create a virtual environment
 
-python -m venv dids\_env
+```powershell
+python -m venv dids_env
+```
 
-.\\dids\_env\\Scripts\\Activate.ps1
+Activate it on Windows PowerShell:
 
-3\. Install dependencies
+```powershell
+.\dids_env\Scripts\Activate.ps1
+```
 
+### 3. Install dependencies
+
+```powershell
 pip install ultralytics opencv-python pillow numpy twilio
+```
 
-Running the Application
+## Running the Application
 
+Make sure the following files are available in the project root:
 
+- `best.pt`
+- `gui_dids.py`
+- `logo.png`
+- `siren.wav`
 
-Make sure best.pt, gui\_dids.py, logo.png, and siren.wav are in the project root.
+Start the application with:
 
+```powershell
+python gui_dids.py
+```
 
+The application automatically searches available camera indexes and opens the DIDS monitoring dashboard.
 
-Run:
+### Controls
 
+| Control | Function |
+|---|---|
+| START MONITORING | Starts real-time drone detection |
+| STOP | Stops monitoring |
+| EXIT | Closes the application |
+| Esc | Exits fullscreen |
+| Z | Exits the application with confirmation |
 
+## SMS Alert Configuration
 
-python gui\_dids.py
+SMS notifications are optional. The application reads Twilio credentials from environment variables instead of storing them directly in the source code.
 
+Set the following variables in PowerShell:
 
+```powershell
+$env:TWILIO_ACCOUNT_SID="your_account_sid"
+$env:TWILIO_AUTH_TOKEN="your_auth_token"
+$env:TWILIO_PHONE_NUMBER="your_twilio_number"
+$env:TARGET_PHONE_NUMBER="your_target_number"
+```
 
-The application automatically searches available camera indexes and starts the monitoring interface.
+Then run the application normally:
 
+```powershell
+python gui_dids.py
+```
 
+If SMS credentials are not configured, the system continues to operate with local detection, siren, and evidence capture.
 
-Controls
+**Never commit real API credentials, authentication tokens, passwords, or `.env` files to GitHub.**
 
-START MONITORING — begins real-time detection
+## Evidence Capture
 
-STOP — stops monitoring
+When an intrusion is detected, the system can capture evidence frames for later inspection. Runtime evidence is excluded from the Git repository through `.gitignore`.
 
-EXIT — closes the application
-
-Esc — exits fullscreen
-
-Z — exits the application with confirmation
-
-SMS Alert Configuration
-
-
-
-SMS notifications are optional. The application reads Twilio credentials from environment variables instead of storing credentials directly in the source code.
-
-
-
-$env:TWILIO\_ACCOUNT\_SID="your\_account\_sid"
-
-$env:TWILIO\_AUTH\_TOKEN="your\_auth\_token"
-
-$env:TWILIO\_PHONE\_NUMBER="your\_twilio\_number"
-
-$env:TARGET\_PHONE\_NUMBER="your\_target\_number"
-
-
-
-Then run:
-
-
-
-python gui\_dids.py
-
-
-
-If SMS credentials are not configured, the system continues operating with local detection, siren, and evidence capture.
-
-
-
-Never commit real API credentials, authentication tokens, passwords, or .env files to GitHub.
-
-
-
-Evidence Capture
-
-
-
-When an intrusion is detected, the system can save evidence frames for later inspection. Runtime evidence is excluded from the Git repository through .gitignore.
-
-
-
-Dataset
-
-
+## Dataset
 
 The dataset configuration is stored in:
 
+```text
+dataset_raw/drone_dataset2/data.yaml
+```
 
-
-dataset\_raw/drone\_dataset2/data.yaml
-
-
-
-The dataset was cleaned before final training by removing duplicate images, invalid label/script files, and a corrupt validation image.
-
-
+The dataset was cleaned before final training. Duplicate images, invalid files, and a corrupt validation image were removed before the final model evaluation.
 
 The training and validation image/label directories are intentionally not included in the public repository.
 
+## Challenges and Solutions
 
-
-Challenges and Solutions
-
-Duplicate and invalid dataset files
-
-
+### 1. Dataset duplicates and invalid files
 
 Duplicate images and an invalid Python file were identified during dataset inspection.
 
+**Solution:** The dataset was cleaned before final training.
 
-
-Solution: The dataset was cleaned before final training.
-
-
-
-Corrupt validation image
-
-
+### 2. Corrupt validation image
 
 A corrupt validation image was identified during validation.
 
+**Solution:** The corrupt image and its corresponding label were removed and the validation cache was rebuilt.
 
+### 3. Real-time detection performance
 
-Solution: The corrupt image and its corresponding label were removed and the validation cache was rebuilt.
+The system needed strong detection accuracy while remaining practical for real-time inference.
 
+**Solution:** YOLOv8s was trained for 100 epochs to provide a strong balance between detection accuracy and practical performance.
 
+### 4. Secure SMS integration
 
-Real-time detection performance
+Hardcoding Twilio credentials could expose sensitive information in source control.
 
+**Solution:** Credentials are read from environment variables and are not stored in the application source code.
 
-
-The system needed good detection accuracy while remaining practical for real-time inference.
-
-
-
-Solution: YOLOv8s was trained for 100 epochs to provide a strong balance between accuracy and performance.
-
-
-
-Secure SMS integration
-
-
-
-Hardcoding Twilio credentials could expose sensitive information.
-
-
-
-Solution: Credentials are read from environment variables and are not stored in the source code.
-
-
-
-Repository organization
-
-
+### 5. Repository organization
 
 Including the complete dataset and training outputs would make the repository unnecessarily large.
 
+**Solution:** Dataset images, labels, runtime evidence, virtual environments, and training outputs are excluded using `.gitignore`, while the final trained model is included.
 
+## Applications
 
-Solution: Dataset images, labels, runtime evidence, virtual environments, and training outputs are excluded using .gitignore, while the final trained model is included.
+- Restricted airspace monitoring
+- Industrial and infrastructure security
+- Campus and institutional security
+- Perimeter surveillance
+- Critical facility monitoring
+- Event and temporary restricted-zone monitoring
 
+## Limitations
 
+- Performance depends on camera quality, lighting, distance, and viewing angle.
+- A single camera provides limited coverage.
+- Very small or heavily occluded drones may be harder to detect.
+- Real-world deployment requires additional testing under different environmental conditions.
+- SMS notification requires valid Twilio configuration and network connectivity.
 
-Applications
+## Future Scope
 
-Restricted airspace monitoring
+- Multi-camera monitoring
+- Drone tracking across consecutive frames
+- Improved detection of very small drones
+- Night-time and low-light detection
+- Additional object classes
+- Web-based remote monitoring
+- Database-backed incident logging
+- Cloud-based alerting
+- Edge-device deployment
+- Integration with security and surveillance infrastructure
 
-Industrial and infrastructure security
+## Security Notes
 
-Campus and institutional security
+- Do not commit API keys, authentication tokens, passwords, or other secrets.
+- Keep Twilio credentials in environment variables or a secure secret-management system.
+- Keep runtime evidence and local configuration files outside version control.
 
-Perimeter surveillance
+## Author
 
-Critical facility monitoring
+**Pushpak Vinod Gavande**  
+Parul Institute of Technology, Parul University
 
-Event and temporary restricted-zone monitoring
+## Repository
 
-Limitations
+[GitHub Repository](https://github.com/pushpakgavande/DIDS-Drone-Intrusion-Detection-System)
 
-Performance depends on camera quality, lighting, distance, and viewing angle.
+---
 
-A single camera provides limited coverage.
-
-Very small or heavily occluded drones may be harder to detect.
-
-Real-world deployment requires testing under different environmental conditions.
-
-SMS notification requires valid Twilio configuration and network connectivity.
-
-Future Scope
-
-Multi-camera monitoring
-
-Drone tracking across consecutive frames
-
-Improved detection of very small drones
-
-Night-time and low-light detection
-
-Additional object classes
-
-Web-based remote monitoring
-
-Database-backed incident logging
-
-Cloud-based alerting
-
-Edge-device deployment
-
-Integration with security and surveillance infrastructure
-
-Security Notes
-
-Do not commit API keys, authentication tokens, passwords, or other secrets.
-
-Keep Twilio credentials in environment variables or a secure secret-management system.
-
-Keep runtime evidence and local configuration files outside version control.
-
+**Drone Intrusion Detection System (DIDS)** — AI-powered real-time drone monitoring and intrusion alert system.
