@@ -292,7 +292,8 @@ Including the complete dataset and training outputs would make the repository un
 
 ## Author
 
-**Pushpak Vinod Gavande**  
+**Pushpak Gavande**  
+**Ayan Sawant**
 Parul Institute of Technology, Parul University
 
 ## Repository
