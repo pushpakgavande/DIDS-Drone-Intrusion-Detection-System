@@ -6,6 +6,23 @@
 
 The **Drone Intrusion Detection System (DIDS)** is an AI-based computer vision application developed to detect drones in real time using a camera feed. It uses a trained **YOLOv8s object detection model** to identify drones and provides a monitoring dashboard with detection information, audible alerts, evidence capture, and optional SMS notification support.
 
+## 🖥️ DIDS GUI Demonstration
+
+The DIDS monitoring dashboard provides a real-time surveillance interface for detecting and reporting drone intrusions.
+
+![DIDS GUI - Drone Detection](dids_gui_demo.png)
+
+The demonstration shows a detected drone with:
+
+- Real-time bounding box
+- Detection confidence score
+- Drone count
+- Intrusion status
+- Active siren status
+- Camera status
+- AI model status
+- Monitoring controls
+
 ## Key Features
 
 - Real-time drone detection using YOLOv8s
